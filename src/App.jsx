@@ -1,8 +1,14 @@
-import PayrollForm from "./components/payroll-form/payroll-form";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PayrollForm from "./components/payrollForm";
 
 function App() {
     return (
-        <PayrollForm />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<PayrollForm />} />
+                <Route path="/addEmployee" element={<PayrollForm />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
