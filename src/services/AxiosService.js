@@ -4,12 +4,13 @@ const BASE_URL = "http://localhost:3001";
 
 class AxiosService {
 
-    post(url, data) {
-
-        return axios.post(BASE_URL + url, data);
-
+    get(url) {
+        return axios.get(BASE_URL + url);
     }
 
+    post(url, data) {
+        return axios.post(BASE_URL + url, data);
+    }
 }
 
 export default new AxiosService();
