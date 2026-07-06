@@ -9,6 +9,11 @@ class EmployeeService {
     getAllEmployee() {
         return AxiosService.get("/employeePayroll");
     }
+
+    updateEmployee(id, employee) {
+        return AxiosService.put("/employeePayroll/" + id, employee);
+    }
+
 }
 
 export default new EmployeeService();

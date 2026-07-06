@@ -5,14 +5,14 @@ import EmployeeService from "../services/EmployeeService";
 function PayrollForm() {
 
     const [employee, setEmployee] = useState({
-        name: "",
-        profile: "",
-        gender: "",
-        department: [],
-        salary: "",
-        notes: ""
-    });
-
+    id: null,
+    name: "",
+    profile: "",
+    gender: "",
+    department: [],
+    salary: "",
+    notes: ""
+});
     // Handle text, radio and range inputs
     const changeHandler = (event) => {
         const { name, value } = event.target;
@@ -44,30 +44,46 @@ function PayrollForm() {
     };
 
     // Save Employee
-    const save = (event) => {
+    // Save Employee
+const save = (event) => {
 
     event.preventDefault();
 
-    EmployeeService.addEmployee(employee)
+    if (employee.id) {
 
-        .then((response) => {
+        EmployeeService.updateEmployee(employee.id, employee)
+            .then((response) => {
 
-            alert("Employee Added Successfully");
+                alert("Employee Updated Successfully");
+                console.log(response.data);
 
-            console.log(response.data);
+            })
+            .catch((error) => {
 
-        })
+                alert("Failed to Update Employee");
+                console.log(error);
 
-        .catch((error) => {
+            });
 
-            alert("Failed to Add Employee");
+    } else {
 
-            console.log(error);
+        EmployeeService.addEmployee(employee)
+            .then((response) => {
 
-        });
+                alert("Employee Added Successfully");
+                console.log(response.data);
+
+            })
+            .catch((error) => {
+
+                alert("Failed to Add Employee");
+                console.log(error);
+
+            });
+
+    }
 
 };
-
     return (
 
         <div className="container">

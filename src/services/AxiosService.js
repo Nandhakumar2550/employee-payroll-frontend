@@ -11,6 +11,11 @@ class AxiosService {
     post(url, data) {
         return axios.post(BASE_URL + url, data);
     }
+
+    put(url, data) {
+        return axios.put(BASE_URL + url, data);
+    }
+
 }
 
 export default new AxiosService();
