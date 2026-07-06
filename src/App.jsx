@@ -1,9 +1,9 @@
+import PayrollForm from "./components/payroll-form/payroll-form";
+
 function App() {
-  return (
-    <div>
-      <h1>Hello Employee Payroll App</h1>
-    </div>
-  );
+    return (
+        <PayrollForm />
+    );
 }
 
 export default App;
