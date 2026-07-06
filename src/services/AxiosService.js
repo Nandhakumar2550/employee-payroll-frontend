@@ -1,8 +1,13 @@
+import axios from "axios";
+
+const BASE_URL = "http://localhost:3001";
+
 class AxiosService {
 
     post(url, data) {
-        console.log("POST URL :", url);
-        console.log("Employee :", data);
+
+        return axios.post(BASE_URL + url, data);
+
     }
 
 }

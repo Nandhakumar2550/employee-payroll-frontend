@@ -4,7 +4,7 @@ class EmployeeService {
 
     addEmployee(employee) {
 
-        AxiosService.post("/employeePayroll", employee);
+        return AxiosService.post("/employeePayroll", employee);
 
     }
 

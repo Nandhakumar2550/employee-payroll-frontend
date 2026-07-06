@@ -46,13 +46,27 @@ function PayrollForm() {
     // Save Employee
     const save = (event) => {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        console.log(employee);
+    EmployeeService.addEmployee(employee)
 
-        EmployeeService.addEmployee(employee);
+        .then((response) => {
 
-    };
+            alert("Employee Added Successfully");
+
+            console.log(response.data);
+
+        })
+
+        .catch((error) => {
+
+            alert("Failed to Add Employee");
+
+            console.log(error);
+
+        });
+
+};
 
     return (
 
