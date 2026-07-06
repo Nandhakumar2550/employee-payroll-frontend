@@ -6,19 +6,61 @@ function Home() {
 
     const [employees, setEmployees] = useState([]);
 
-    useEffect(() => {
+    // Load all employees
+    const loadEmployees = () => {
 
         EmployeeService.getAllEmployee()
+
             .then((response) => {
+
                 setEmployees(response.data);
+
             })
+
             .catch((error) => {
+
                 console.log(error);
+
             });
+
+    };
+
+    // Load data when page opens
+    useEffect(() => {
+
+        loadEmployees();
 
     }, []);
 
+    // Delete employee
+    const deleteEmployee = (id) => {
+
+        if (window.confirm("Are you sure you want to delete this employee?")) {
+
+            EmployeeService.deleteEmployee(id)
+
+                .then(() => {
+
+                    alert("Employee Deleted Successfully");
+
+                    loadEmployees();
+
+                })
+
+                .catch((error) => {
+
+                    console.log(error);
+
+                    alert("Unable to Delete Employee");
+
+                });
+
+        }
+
+    };
+
     return (
+
         <div className="home-container">
 
             <h1>Employee Payroll</h1>
@@ -26,32 +68,61 @@ function Home() {
             <table>
 
                 <thead>
+
                     <tr>
+
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Department</th>
                         <th>Salary</th>
+                        <th>Action</th>
+
                     </tr>
+
                 </thead>
 
                 <tbody>
 
                     {
-                        employees.map((employee) => (
 
-                            <tr key={employee.id}>
+                        employees.length > 0 ?
 
-                                <td>{employee.name}</td>
+                            employees.map((employee) => (
 
-                                <td>{employee.gender}</td>
+                                <tr key={employee.id}>
 
-                                <td>{employee.department.join(", ")}</td>
+                                    <td>{employee.name}</td>
 
-                                <td>{employee.salary}</td>
+                                    <td>{employee.gender}</td>
+
+                                    <td>{employee.department.join(", ")}</td>
+
+                                    <td>{employee.salary}</td>
+
+                                    <td>
+
+                                        <button
+                                            onClick={() => deleteEmployee(employee.id)}
+                                        >
+                                            Delete
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            ))
+
+                            :
+
+                            <tr>
+
+                                <td colSpan="5">
+                                    No Employees Found
+                                </td>
 
                             </tr>
 
-                        ))
                     }
 
                 </tbody>
@@ -59,6 +130,7 @@ function Home() {
             </table>
 
         </div>
+
     );
 
 }

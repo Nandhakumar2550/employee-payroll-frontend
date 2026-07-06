@@ -14,6 +14,10 @@ class EmployeeService {
         return AxiosService.put("/employeePayroll/" + id, employee);
     }
 
+    deleteEmployee(id) {
+        return AxiosService.delete("/employeePayroll/" + id);
+    }
+
 }
 
 export default new EmployeeService();

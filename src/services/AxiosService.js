@@ -16,6 +16,10 @@ class AxiosService {
         return axios.put(BASE_URL + url, data);
     }
 
+    delete(url) {
+        return axios.delete(BASE_URL + url);
+    }
+
 }
 
 export default new AxiosService();
